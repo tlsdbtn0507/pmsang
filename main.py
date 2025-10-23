@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
@@ -23,6 +24,11 @@ class ChatRequest(BaseModel):
 @app.get("/")
 async def read_root():
     return {"message": "Hello World"}
+
+@app.get("/chat")
+async def chat_page():
+    """채팅 페이지 반환"""
+    return FileResponse("app/static/chat.html")
 
 @app.post("/chat/gpt-3.5-turbo")
 async def chat_gpt35_turbo(request: ChatRequest):
