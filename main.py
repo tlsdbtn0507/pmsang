@@ -11,7 +11,7 @@ load_dotenv()
 app = FastAPI()
 
 # 정적 파일 서빙 설정
-app.mount("/static", StaticFiles(directory="."), name="static")
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # OpenAI 클라이언트 초기화
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))

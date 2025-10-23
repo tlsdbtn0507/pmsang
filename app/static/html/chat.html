@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI 모델 비교 채팅 - at-thirty-rules</title>
+    <link rel="stylesheet" href="/static/css/chat.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 OpenAI 모델 비교 채팅</h1>
+        <p>4개의 다른 GPT 모델과 동시에 대화하여 성능을 비교해보세요</p>
+    </div>
+    
+    <div class="container">
+        <!-- GPT-3.5 Turbo -->
+        <div class="chat-form gpt-35-turbo">
+            <h2>🟢 GPT-3.5 Turbo</h2>
+            <div class="model-info">
+                <strong>경제적 모델</strong><br>
+                빠른 응답, 저렴한 비용
+            </div>
+            <form id="form-gpt-35-turbo">
+                <textarea id="message-gpt-35-turbo" placeholder="메시지를 입력하세요..." required></textarea>
+                <button type="submit" id="btn-gpt-35-turbo">GPT-3.5 Turbo로 전송</button>
+            </form>
+            <div id="response-gpt-35-turbo" class="response" style="display: none;"></div>
+        </div>
+        
+        <!-- GPT-4o -->
+        <div class="chat-form gpt-4o">
+            <h2>🔴 GPT-4o</h2>
+            <div class="model-info">
+                <strong>최신 최고성능 모델</strong><br>
+                가장 높은 성능과 빠른 응답
+            </div>
+            <form id="form-gpt-4o">
+                <textarea id="message-gpt-4o" placeholder="메시지를 입력하세요..." required></textarea>
+                <button type="submit" id="btn-gpt-4o">GPT-4o로 전송</button>
+            </form>
+            <div id="response-gpt-4o" class="response" style="display: none;"></div>
+        </div>
+        
+        <!-- GPT-4o Mini -->
+        <div class="chat-form gpt-4o-mini">
+            <h2>🟡 GPT-4o Mini</h2>
+            <div class="model-info">
+                <strong>GPT-4o 경량 버전</strong><br>
+                비용 효율적인 고성능 모델
+            </div>
+            <form id="form-gpt-4o-mini">
+                <textarea id="message-gpt-4o-mini" placeholder="메시지를 입력하세요..." required></textarea>
+                <button type="submit" id="btn-gpt-4o-mini">GPT-4o Mini로 전송</button>
+            </form>
+            <div id="response-gpt-4o-mini" class="response" style="display: none;"></div>
+        </div>
+        
+        <!-- GPT-4 Turbo -->
+        <div class="chat-form gpt-4-turbo">
+            <h2>🟣 GPT-4 Turbo</h2>
+            <div class="model-info">
+                <strong>GPT-4 기반 고성능</strong><br>
+                균형잡힌 성능과 비용
+            </div>
+            <form id="form-gpt-4-turbo">
+                <textarea id="message-gpt-4-turbo" placeholder="메시지를 입력하세요..." required></textarea>
+                <button type="submit" id="btn-gpt-4-turbo">GPT-4 Turbo로 전송</button>
+            </form>
+            <div id="response-gpt-4-turbo" class="response" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>
