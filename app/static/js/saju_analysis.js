@@ -44,7 +44,8 @@ class SajuAnalysis {
 
         if (birthDate && birthTime) {
             try {
-                const response = await fetch('/saju/detailed', {
+                const API_BASE = window.API_BASE_URL || window.location.origin;
+                const response = await fetch(`${API_BASE}/saju/detailed`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -61,11 +62,9 @@ class SajuAnalysis {
                 if (data.status === 'success') {
                     this.updateAnalysis(data);
                 } else {
-                    console.error('사주 분석 실패:', data.error);
                     this.showError(data.error);
                 }
             } catch (error) {
-                console.error('API 호출 실패:', error);
                 this.showError('사주 분석을 불러오는데 실패했습니다.');
             }
         } else {

@@ -182,7 +182,6 @@ class SajuCalculator:
             }
             
         except Exception as e:
-            print(f"사주 계산 오류: {e}")
             return None
     
     def calculate_saju(self, year, month, day, hour, minute=0):
@@ -216,7 +215,6 @@ class SajuCalculator:
             }
             
         except Exception as e:
-            print(f"사주 계산 오류: {e}")
             return None
     
     def get_five_element(self, year, month, day, hour, minute=0):
@@ -320,38 +318,3 @@ class SajuCalculator:
     
 
 # 사용 예시
-if __name__ == "__main__":
-    calculator = SajuCalculator()
-    
-    # 만세력 기반 사주 분석
-    saju_result = calculator.calculate_saju(1997, 5, 7, 21, 30)  # 1997년 5월 7일 오후 9시 30분
-    if saju_result:
-        print("=== 만세력 기반 사주 분석 ===")
-        print(f"오행: {saju_result['five_element']}")
-        print(f"일간(천간): {saju_result['day_stem']}")
-        print(f"일지(지지): {saju_result['day_branch']}")
-        print(f"일주: {saju_result['day_pillar']}")
-        print(f"절기: {saju_result['season']}")
-        print(f"음력월: {saju_result['lunar_month']}월")
-        
-        # 사주 기둥 정보
-        four_pillars = saju_result['four_pillars']
-        print(f"\n=== 사주 기둥 (만세력) ===")
-        print(f"년주: {four_pillars['year']['pillar']} ({four_pillars['year']['stem']} + {four_pillars['year']['branch']})")
-        print(f"월주: {four_pillars['month']['pillar']} ({four_pillars['month']['stem']} + {four_pillars['month']['branch']})")
-        print(f"일주: {four_pillars['day']['pillar']} ({four_pillars['day']['stem']} + {four_pillars['day']['branch']})")
-        print(f"시주: {four_pillars['hour']['pillar']} ({four_pillars['hour']['stem']} + {four_pillars['hour']['branch']})")
-        
-        # 오행 상세 정보
-        traits = calculator.get_five_element_traits(saju_result['five_element'])
-        if traits:
-            print(f"\n=== {traits['name']} {traits['emoji']} 성격 특징 ===")
-            print(f"특징: {', '.join(traits['traits'])}")
-            print(f"설명: {traits['description']}")
-            print(f"강점: {traits['strengths']}")
-            print(f"약점: {traits['weaknesses']}")
-    
-    # 기존 호환성 테스트
-    print("\n=== 기존 방식 테스트 ===")
-    old_result = calculator.get_five_element(1997, 5, 7, 21, 30)
-    print(f"오행만: {old_result}")

@@ -61,7 +61,7 @@ pmsang/
 
 4. 브라우저에서 접속:
 ```
-http://localhost:8000/chat
+http://localhost:8001/chat
 ```
 
 ## API

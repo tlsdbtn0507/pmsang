@@ -33,13 +33,13 @@
                     <label for="gender">성별:</label>
                     <select id="gender" required>
                         <option value="">선택하세요</option>
-                        <option value="남">남</option>
+                        <option value="남" selected>남</option>
                         <option value="여">여</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="birthPlace">출생지역:</label>
-                    <input type="text" id="birthPlace" placeholder="예: 서울, 부산, 경기도 등" required>
+                    <input type="text" id="birthPlace" value="서울" placeholder="예: 서울, 부산, 경기도 등" required>
                 </div>
                 <button type="submit" id="btn-saju-analysis">오행 확인하기</button>
             </form>
@@ -47,6 +47,10 @@
         </div>
     </div>
 
-    <script src="/static/js/chat.js?v=2"></script>
+    <script>
+        // 환경변수 설정
+        window.API_BASE_URL = window.location.origin;
+    </script>
+    <script src="/static/js/chat.js?v=3"></script>
 </body>
 </html>

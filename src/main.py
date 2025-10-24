@@ -1,8 +1,13 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from pydantic import BaseModel
 from saju_calculator import SajuCalculator
+from dotenv import load_dotenv
+import os
+
+# .env 파일 로드
+load_dotenv()
 
 app = FastAPI()
 
@@ -11,6 +16,9 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # 오행 계산기 초기화
 saju_calculator = SajuCalculator()
+
+# 환경변수에서 API URL 설정
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8001")
 
 # 요청 모델 정의
 class SajuRequest(BaseModel):
@@ -26,12 +34,30 @@ async def read_root():
 @app.get("/chat")
 async def chat_page():
     """채팅 페이지 반환"""
-    return FileResponse("app/static/chat.html")
+    with open("app/static/chat.html", "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    # 환경변수를 HTML에 주입
+    content = content.replace(
+        "window.API_BASE_URL = window.location.origin;",
+        f"window.API_BASE_URL = '{API_BASE_URL}';"
+    )
+    
+    return HTMLResponse(content=content)
 
 @app.get("/saju/analysis")
 async def saju_analysis_page():
     """사주 분석 페이지 반환"""
-    return FileResponse("app/static/saju_analysis.html")
+    with open("app/static/saju_analysis.html", "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    # 환경변수를 HTML에 주입
+    content = content.replace(
+        "window.API_BASE_URL = window.location.origin;",
+        f"window.API_BASE_URL = '{API_BASE_URL}';"
+    )
+    
+    return HTMLResponse(content=content)
 
 @app.post("/saju/analyze")
 async def analyze_saju(request: SajuRequest):
@@ -159,4 +185,5 @@ async def analyze_saju_detailed(request: SajuRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", "8001"))  # .env의 PORT 값 사용, 없으면 8001
+    uvicorn.run(app, host="0.0.0.0", port=port)

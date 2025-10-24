@@ -23,9 +23,9 @@ fi
 
 # 서버 실행
 echo "🌐 서버를 시작합니다..."
-echo "   - 웹 인터페이스: http://localhost:8000"
-echo "   - API 문서: http://localhost:8000/docs"
+echo "   - 웹 인터페이스: http://localhost:8001"
+echo "   - API 문서: http://localhost:8001/docs"
 echo "   - 서버 중지: Ctrl+C"
 echo ""
 
-python src/main.py
+PORT=8001 python src/main.py
