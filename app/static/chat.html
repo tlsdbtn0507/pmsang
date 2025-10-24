@@ -3,73 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenAI 모델 비교 채팅 - at-thirty-rules</title>
+    <title>오행 계산기</title>
     <link rel="stylesheet" href="/static/css/chat.css">
 </head>
 <body>
     <div class="header">
-        <h1>🤖 OpenAI 모델 비교 채팅</h1>
-        <p>4개의 다른 GPT 모델과 동시에 대화하여 성능을 비교해보세요</p>
+        <h1>🔮 오행 계산기</h1>
+        <p>생년월일시를 입력하면 당신의 오행을 알려드립니다</p>
     </div>
     
     <div class="container">
-        <!-- GPT-3.5 Turbo -->
-        <div class="chat-form gpt-35-turbo">
-            <h2>🟢 GPT-3.5 Turbo</h2>
+        <!-- 오행 계산 폼 -->
+        <div class="saju-form">
+            <h2>🔮 나의 오행 알아보기</h2>
             <div class="model-info">
-                <strong>경제적 모델</strong><br>
-                빠른 응답, 저렴한 비용
+                <strong>간단한 오행 계산</strong><br>
+                생년월일시를 입력하면 물, 금, 불, 흙, 나무 중 하나의 오행을 알려드립니다
             </div>
-            <form id="form-gpt-35-turbo">
-                <textarea id="message-gpt-35-turbo" placeholder="메시지를 입력하세요..." required></textarea>
-                <button type="submit" id="btn-gpt-35-turbo">GPT-3.5 Turbo로 전송</button>
+            <form id="form-saju-analysis">
+                <div class="input-group">
+                    <label for="birthDate">출생일:</label>
+                    <input type="date" id="birthDate" value="1997-05-07" required>
+                </div>
+                <div class="input-group">
+                    <label for="birthTime">출생시:</label>
+                    <input type="time" id="birthTime" value="21:00" required>
+                </div>
+                <div class="input-group">
+                    <label for="gender">성별:</label>
+                    <select id="gender" required>
+                        <option value="">선택하세요</option>
+                        <option value="남">남</option>
+                        <option value="여">여</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="birthPlace">출생지역:</label>
+                    <input type="text" id="birthPlace" placeholder="예: 서울, 부산, 경기도 등" required>
+                </div>
+                <button type="submit" id="btn-saju-analysis">오행 확인하기</button>
             </form>
-            <div id="response-gpt-35-turbo" class="response" style="display: none;"></div>
-        </div>
-        
-        <!-- GPT-4o -->
-        <div class="chat-form gpt-4o">
-            <h2>🔴 GPT-4o</h2>
-            <div class="model-info">
-                <strong>최신 최고성능 모델</strong><br>
-                가장 높은 성능과 빠른 응답
-            </div>
-            <form id="form-gpt-4o">
-                <textarea id="message-gpt-4o" placeholder="메시지를 입력하세요..." required></textarea>
-                <button type="submit" id="btn-gpt-4o">GPT-4o로 전송</button>
-            </form>
-            <div id="response-gpt-4o" class="response" style="display: none;"></div>
-        </div>
-        
-        <!-- GPT-4o Mini -->
-        <div class="chat-form gpt-4o-mini">
-            <h2>🟡 GPT-4o Mini</h2>
-            <div class="model-info">
-                <strong>GPT-4o 경량 버전</strong><br>
-                비용 효율적인 고성능 모델
-            </div>
-            <form id="form-gpt-4o-mini">
-                <textarea id="message-gpt-4o-mini" placeholder="메시지를 입력하세요..." required></textarea>
-                <button type="submit" id="btn-gpt-4o-mini">GPT-4o Mini로 전송</button>
-            </form>
-            <div id="response-gpt-4o-mini" class="response" style="display: none;"></div>
-        </div>
-        
-        <!-- GPT-4 Turbo -->
-        <div class="chat-form gpt-4-turbo">
-            <h2>🟣 GPT-4 Turbo</h2>
-            <div class="model-info">
-                <strong>GPT-4 기반 고성능</strong><br>
-                균형잡힌 성능과 비용
-            </div>
-            <form id="form-gpt-4-turbo">
-                <textarea id="message-gpt-4-turbo" placeholder="메시지를 입력하세요..." required></textarea>
-                <button type="submit" id="btn-gpt-4-turbo">GPT-4 Turbo로 전송</button>
-            </form>
-            <div id="response-gpt-4-turbo" class="response" style="display: none;"></div>
+            <div id="response-saju-analysis" class="response" style="display: none;"></div>
         </div>
     </div>
 
-    <script src="/static/js/chat.js"></script>
+    <script src="/static/js/chat.js?v=2"></script>
 </body>
 </html>

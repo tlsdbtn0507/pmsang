@@ -11,6 +11,108 @@ body {
 
 .container {
     display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.saju-form {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    margin-bottom: 30px;
+}
+
+.saju-form h2 {
+    color: white;
+    margin-top: 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.saju-form .model-info {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.saju-form .input-group {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+}
+
+.saju-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.saju-form input,
+.saju-form select {
+    width: 120px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.saju-form button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+.saju-form button:hover {
+    background: white;
+    color: #667eea;
+}
+
+.saju-form .response {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-top: 20px;
+}
+
+.model-result-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    color: white;
+}
+
+.model-result-card h4 {
+    margin: 0 0 15px 0;
+    color: white;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.model-analysis-content {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.chat-forms-container {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
@@ -112,4 +214,24 @@ button:disabled {
 .header p {
     color: #666;
     margin: 0;
+}
+
+.rag-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.rag-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+}
+
+.rag-info p {
+    margin: 0;
+    font-size: 0.9em;
+    opacity: 0.9;
 }
