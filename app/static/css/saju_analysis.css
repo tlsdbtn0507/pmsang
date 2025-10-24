@@ -1,0 +1,69 @@
+/* 사주 분석 페이지 스타일 */
+::-webkit-scrollbar { 
+    display: none;
+}
+
+/* Tailwind 커스텀 설정 */
+.font-sans {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 브랜드 컬러 */
+.brand-purple-light {
+    background-color: #F3E8FF;
+}
+
+.brand-purple {
+    background-color: #8B5CF6;
+}
+
+.brand-pink-light {
+    background-color: #FFF0F5;
+}
+
+.brand-pink {
+    background-color: #EC4899;
+}
+
+.brand-blue-light {
+    background-color: #E0F2FE;
+}
+
+.brand-beige-light {
+    background-color: #FFF7ED;
+}
+
+.brand-yellow-light {
+    background-color: #FEF9C3;
+}
+
+/* 오행별 색상 클래스 */
+.element-wood {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #15803d;
+}
+
+.element-fire {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.element-earth {
+    background-color: #fff7ed;
+    border-color: #fed7aa;
+    color: #ea580c;
+}
+
+.element-metal {
+    background-color: #fefce8;
+    border-color: #fde047;
+    color: #ca8a04;
+}
+
+.element-water {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+    color: #2563eb;
+}

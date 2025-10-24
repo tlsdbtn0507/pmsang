@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saju Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/saju_analysis.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Noto Sans KR', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-purple': {
+                            light: '#F3E8FF',
+                            DEFAULT: '#8B5CF6',
+                        },
+                        'brand-pink': {
+                            light: '#FFF0F5',
+                            DEFAULT: '#EC4899',
+                        },
+                        'brand-blue': {
+                            light: '#E0F2FE',
+                        },
+                        'brand-beige': {
+                            light: '#FFF7ED',
+                        },
+                        'brand-yellow': {
+                            light: '#FEF9C3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-800 flex items-center justify-center p-4 min-h-[100vh] font-sans">
+    <main id="saju_app_container" class="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <header id="header" class="bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 text-white p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+                <h1 class="text-lg font-bold">PM 사주 챗봇</h1>
+            </div>
+            <button class="text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </header>
+
+        <section id="saju_content" class="p-4 md:p-6 space-y-6">
+            <div>
+                <a href="/chat" class="text-gray-500 text-sm hover:text-gray-700">
+                    <i class="fa-solid fa-arrow-left mr-1"></i>
+                    챗봇으로 돌아가기
+                </a>
+            </div>
+
+            <div id="result_card" class="border border-purple-200 rounded-xl p-4 md:p-6 space-y-6 bg-white">
+                <div class="flex justify-end">
+                    <button class="text-xs text-gray-600 border border-gray-300 rounded-md px-3 py-1.5 hover:bg-gray-50">
+                        <i class="fa-solid fa-arrow-left mr-1.5"></i>다시 진단하기
+                    </button>
+                </div>
+
+                <div id="character_illustration" class="flex justify-center">
+                    <div class="w-48 h-48">
+                       <img class="w-full h-full object-contain" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4687080d5d-c4c5219bc5a250d50693.png" alt="Cute cartoon white bear character, waving happily, surrounded by floating blue water droplets, pastel rainbow concentric circles in the background, simple flat illustration style, vector art" />
+                    </div>
+                </div>
+
+                <div id="core_competencies" class="text-center">
+                    <h2 class="text-xl font-bold text-gray-800">당신의 사주에 따른 핵심 직무역량은?</h2>
+                </div>
+
+                <!-- 사주 차트 (동적 업데이트) -->
+                <div id="saju_grid" class="bg-purple-50/50 border border-purple-100 rounded-lg p-3">
+                    <div class="grid grid-cols-4 gap-2 text-center">
+                        <div class="text-gray-500 text-sm font-medium">시(時)</div>
+                        <div class="text-gray-500 text-sm font-medium">일(日)</div>
+                        <div class="text-gray-500 text-sm font-medium">월(月)</div>
+                        <div class="text-gray-500 text-sm font-medium">연(年)</div>
+
+                        <!-- 천간 행 -->
+                        <div id="hour-stem" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="day-stem" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="month-stem" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="year-stem" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+
+                        <!-- 십성 행 -->
+                        <div id="hour-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="day-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="month-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="year-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+
+                        <!-- 지지 행 -->
+                        <div id="hour-branch" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="day-branch" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="month-branch" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="year-branch" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+
+                        <!-- 지지 십성 행 -->
+                        <div id="hour-branch-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="day-branch-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="month-branch-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                        <div id="year-branch-ten-god" class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                            <div class="font-bold text-gray-700">-</div>
+                            <div class="text-xs text-gray-600 mt-1">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 주요 성향 (동적 업데이트) -->
+                <div id="main_tendencies">
+                    <h3 class="font-semibold text-gray-700 mb-3">주요 성향</h3>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="bg-purple-50 text-purple-800 text-sm p-2.5 rounded-lg flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-heart text-purple-500"></i> 
+                            <span class="tendency-text">-</span>
+                        </div>
+                        <div class="bg-purple-50 text-purple-800 text-sm p-2.5 rounded-lg flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-comment-dots text-purple-500"></i> 
+                            <span class="tendency-text">-</span>
+                        </div>
+                        <div class="bg-purple-50 text-purple-800 text-sm p-2.5 rounded-lg flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-book text-purple-500"></i> 
+                            <span class="tendency-text">-</span>
+                        </div>
+                        <div class="bg-purple-50 text-purple-800 text-sm p-2.5 rounded-lg flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-scale-balanced text-purple-500"></i> 
+                            <span class="tendency-text">-</span>
+                        </div>
+                        <div class="bg-purple-50 text-purple-800 text-sm p-2.5 rounded-lg flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-lightbulb text-purple-500"></i> 
+                            <span class="tendency-text">-</span>
+                        </div>
+                        <div class="bg-purple-50 text-purple-800 text-sm p-2.5 rounded-lg flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-sitemap text-purple-500"></i> 
+                            <span class="tendency-text">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 성격 유형 분석 (동적 업데이트) -->
+                <div id="personality_type">
+                    <h3 class="font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-astronaut text-purple-500"></i> 당신의 성격 유형
+                    </h3>
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 space-y-4">
+                        <div id="analysis_1">
+                            <h4 class="font-bold text-purple-700 text-sm mb-1">
+                                <span id="five-element-tag">{오행}</span> 오행 분석
+                            </h4>
+                            <p class="text-sm text-gray-600 leading-relaxed" id="five-element-desc">
+                                분석 중...
+                            </p>
+                        </div>
+                        <div id="analysis_2">
+                            <h4 class="font-bold text-purple-700 text-sm mb-1">
+                                <span id="stem-branch-tag">{천간지지}</span> 천간 지지 분석
+                            </h4>
+                            <p class="text-sm text-gray-600 leading-relaxed" id="stem-branch-desc">
+                                분석 중...
+                            </p>
+                        </div>
+                        <div id="analysis_3">
+                            <h4 class="font-bold text-purple-700 text-sm mb-1">
+                                <span id="day-pillar-tag">{일주}</span> 일주 분석
+                            </h4>
+                            <p class="text-sm text-gray-600 leading-relaxed" id="day-pillar-desc">
+                                분석 중...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 한줄 팁 (동적 업데이트) -->
+                <div id="one_line_tip" class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                    <p class="text-sm text-gray-700">
+                        <span class="font-bold">한 줄 팁:</span> 
+                        <span id="tip-content">분석 중...</span>
+                    </p>
+                </div>
+            </div>
+
+            <div id="cta_buttons" class="space-y-2 pt-2">
+                <button class="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:opacity-90 transition-opacity">
+                    <i class="fa-solid fa-book-open mr-2"></i> PM 부트캠프 바로보기
+                </button>
+                <button class="w-full bg-white border border-gray-300 text-gray-700 font-bold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors">
+                    <i class="fa-regular fa-circle-check mr-2"></i> PM 부트캠프 신청하기
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/saju_analysis.js"></script>
+</body>
+</html>
